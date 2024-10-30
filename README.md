@@ -80,7 +80,15 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-3. **Setup Database**
+3. **Generate JWT secret**
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Set the generated value in `.env` file, under `GAMEVERSE_JWT_SECRET` section.
+
+
+4. **Setup Database**
 ```bash
 # Using Docker
 docker-compose up -d postgres redis
@@ -88,13 +96,13 @@ docker-compose up -d postgres redis
 # Or connect to existing services by configuring application.properties
 ```
 
-4. **Build and Run**
+5. **Build and Run**
 ```bash
 mvn clean install
 mvn spring-boot:run
 ```
 
-5. **Verify Installation**
+6. **Verify Installation**
 - Swagger UI: http://localhost:8080/swagger-ui.html
 - GraphQL Playground: http://localhost:8080/graphiql
 - Health Check: http://localhost:8080/actuator/health
